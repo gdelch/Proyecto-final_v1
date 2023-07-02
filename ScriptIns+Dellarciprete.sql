@@ -193,8 +193,6 @@ VALUES
 ('Angel','Paz',27543061097,'belgrano 1241',1025,'','apaz12@gmail.com',1)
 ;
 
-SELECT * FROM TRANSPORTES;
-
 INSERT INTO transportes
 (razonsocial_transporte, cap_carga, direccion_transporte, cp_transporte, telefono_transporte, email_transporte)
 VALUES 
