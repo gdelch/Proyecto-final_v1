@@ -1,5 +1,7 @@
 /* Selecciono la BD del proyecto final y luego seteo autocommit en 0 */
-USE proyecto_final_v1;SELECT @@autocommit;SET @@autocommit = 0;
+USE proyecto_final_v1;
+SELECT @@autocommit;
+SET @@autocommit = 0;
 /* inserto nuevos rubros que la compania planea comenzar a vender */
 	    INSERT INTO rubros
             (
