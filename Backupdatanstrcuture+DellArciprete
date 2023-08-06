@@ -1,0 +1,1690 @@
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+--
+-- Host: localhost    Database: proyecto_final_v1
+-- ------------------------------------------------------
+-- Server version 8.0.33
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
+;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */
+;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */
+;
+/*!50503 SET NAMES utf8 */
+;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */
+;
+/*!40103 SET TIME_ZONE='+00:00' */
+;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */
+;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */
+;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */
+;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */
+;
+--
+-- Table structure for table `audit_log_exposiciones`
+--
+DROP TABLE IF EXISTS `audit_log_exposiciones`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `audit_log_exposiciones`
+             (
+                          `id_auditexp`        INT NOT NULL auto_increment,
+                          `id_exposiciones`    INT NOT NULL,
+                          `categoria_exp`      VARCHAR(20) NOT NULL,
+                          `comision_exp`       DECIMAL(10,2) NOT NULL,
+                          `accion`             VARCHAR(255) NOT NULL,
+                          `fecha_modificacion` DATE NOT NULL,
+                          `hora_modificacion`  TIME NOT NULL,
+                          `usuario`            VARCHAR(200) NOT NULL,
+                          PRIMARY KEY (`id_auditexp`)
+             )
+             engine=innodb auto_increment=3 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `audit_log_exposiciones`
+--LOCK tables `audit_log_exposiciones` WRITE;
+/*!40000 ALTER TABLE `audit_log_exposiciones` DISABLE KEYS */
+;INSERT INTO `audit_log_exposiciones` VALUES
+            (
+                        1,7,
+                        'vip_caviar',
+                        6000.00,
+                        'creación de registro',
+                        '2023-07-22',
+                        '21:04:29',
+                        'root@localhost'
+            )
+            ,
+            (
+                        2,7,
+                        'vip_caviar',
+                        6000.00,
+                        'actualización de registro',
+                        '2023-07-22',
+                        '21:11:52',
+                        'root@localhost'
+            );
+
+/*!40000 ALTER TABLE `audit_log_exposiciones` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `audit_log_vendedores`
+--DROP TABLE IF EXISTS `audit_log_vendedores`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `audit_log_vendedores`
+             (
+                          `id_auditv`            INT NOT NULL auto_increment,
+                          `id_vendedores`        INT NOT NULL,
+                          `razonsocial_vendedor` VARCHAR(20) NOT NULL,
+                          `cuit_vendedor`        CHAR(11) NOT NULL,
+                          `rubro_id`             INT NOT NULL,
+                          `direccion_vendedor`   VARCHAR(30) NOT NULL,
+                          `cp_vendedor`          CHAR(4) NOT NULL,
+                          `telefono_vendedor`    VARCHAR(30) DEFAULT NULL,
+                          `email_vendedor`       VARCHAR(30) DEFAULT NULL,
+                          `reputacion`           VARCHAR(20) DEFAULT NULL,
+                          `accion`               VARCHAR(255) NOT NULL,
+                          `fecha_modificacion`   DATE NOT NULL,
+                          `hora_modificacion`    TIME NOT NULL,
+                          `usuario`              VARCHAR(200) NOT NULL,
+                          PRIMARY KEY (`id_auditv`)
+             )
+             engine=innodb auto_increment=4 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `audit_log_vendedores`
+--LOCK tables `audit_log_vendedores` WRITE;
+/*!40000 ALTER TABLE `audit_log_vendedores` DISABLE KEYS */
+;INSERT INTO `audit_log_vendedores` VALUES
+            (
+                        1,12,
+                        'todocomics',
+                        '27465361812',
+                        4,
+                        'republica de la india 567',
+                        '1206',
+                        '1165224110',
+                        'todocomics@gmail.com',
+                        'plata',
+                        'creación de registro',
+                        '2023-07-22',
+                        '20:30:51',
+                        'root@localhost'
+            )
+            ,
+            (
+                        2,11,
+                        'todocomics',
+                        '27465361812',
+                        4,
+                        'republica de la india 567',
+                        '1206',
+                        '1165224110',
+                        'todocomics@gmail.com',
+                        'plata',
+                        'actualización de registro',
+                        '2023-07-22',
+                        '20:45:08',
+                        'root@localhost'
+            )
+            ,
+            (
+                        3,12,
+                        'todocomics',
+                        '27465361812',
+                        4,
+                        'republica de la india 567',
+                        '1206',
+                        '1165224110',
+                        'todocomics@gmail.com',
+                        'plata',
+                        'actualización de registro',
+                        '2023-07-22',
+                        '20:45:08',
+                        'root@localhost'
+            );
+
+/*!40000 ALTER TABLE `audit_log_vendedores` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `categorias`
+--DROP TABLE IF EXISTS `categorias`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `categorias`
+             (
+                          `id_categorias`         INT NOT NULL auto_increment,
+                          `descripcion_categoria` VARCHAR(30) NOT NULL,
+                          PRIMARY KEY (`id_categorias`)
+             )
+             engine=innodb auto_increment=26 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `categorias`
+--LOCK tables `categorias` WRITE;
+/*!40000 ALTER TABLE `categorias` DISABLE KEYS */
+;INSERT INTO `categorias` VALUES
+            (
+                        1,
+                        'whiskeys'
+            )
+            ,
+            (
+                        2,
+                        'vinos blancos'
+            )
+            ,
+            (
+                        3,
+                        'vinos tintos'
+            )
+            ,
+            (
+                        4,
+                        'vinos rosados'
+            )
+            ,
+            (
+                        5,
+                        'Almacenamiento data'
+            )
+            ,
+            (
+                        6,
+                        'detailing vehiculos'
+            )
+            ,
+            (
+                        7,
+                        'mascarillas faciales'
+            )
+            ,
+            (
+                        8,
+                        'jabones organicos'
+            )
+            ,
+            (
+                        9,
+                        'camisetas futbol'
+            );
+
+/*!40000 ALTER TABLE `categorias` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `clientes`
+--DROP TABLE IF EXISTS `clientes`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `clientes`
+             (
+                          `id_clientes`       INT NOT NULL auto_increment,
+                          `nombre_cliente`    VARCHAR(20) NOT NULL,
+                          `apellido_cliente`  VARCHAR(30) NOT NULL,
+                          `cuil_cliente`      CHAR(11) NOT NULL,
+                          `direccion_cliente` VARCHAR(30) NOT NULL,
+                          `cp_cliente`        CHAR(4) NOT NULL,
+                          `telefono_cliente`  VARCHAR(30) DEFAULT NULL,
+                          `email_cliente`     VARCHAR(30) DEFAULT NULL,
+                          `membresia`         TINYINT(1) DEFAULT NULL,
+                          PRIMARY KEY (`id_clientes`)
+             )
+             engine=innodb auto_increment=13 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `clientes`
+--LOCK tables `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */
+;INSERT INTO `clientes` VALUES
+            (
+                        1,
+                        'Lionel',
+                        'Messi',
+                        '20305561512',
+                        'avenida belgrano 1240',
+                        '2000',
+                        '3516367578',
+                        'leo_campeon@gmail.com',
+                        1
+            )
+            ,
+            (
+                        3,
+                        'Milena',
+                        'Katz',
+                        '27423069017',
+                        'guemes 2304',
+                        '5700',
+                        '',
+                        'mile_k99@gmail.com',
+                        1
+            )
+            ,
+            (
+                        4,
+                        'Francisca',
+                        'Garcia',
+                        '27422411247',
+                        'soler 1245',
+                        '1001',
+                        '',
+                        'franga91@gmail.com',
+                        0
+            )
+            ,
+            (
+                        5,
+                        'Franco',
+                        'Martinez',
+                        '27301239017',
+                        'medrano 654',
+                        '1022',
+                        '',
+                        'fmartinez.1987@gmail.com',
+                        1
+            )
+            ,
+            (
+                        6,
+                        'Juan',
+                        'Garcia',
+                        '27248961137',
+                        'malabia 1240',
+                        '1015',
+                        '',
+                        'juanitogarcia77@gmail.com',
+                        0
+            )
+            ,
+            (
+                        7,
+                        'Martin',
+                        'Gonzalez',
+                        '27113069217',
+                        'aguero 435',
+                        '1012',
+                        '',
+                        'marting1992@gmail.com',
+                        1
+            )
+            ,
+            (
+                        8,
+                        'Nahuel',
+                        'Gomez',
+                        '27101161907',
+                        'directorio 1240',
+                        '1010',
+                        '',
+                        'nahuegomez@gmail.com',
+                        0
+            )
+            ,
+            (
+                        9,
+                        'Tomas',
+                        'Juarez',
+                        '27183060807',
+                        'sarmiento 4114',
+                        '1013',
+                        '',
+                        'tommyj1@gmail.com',
+                        1
+            )
+            ,
+            (
+                        10,
+                        'Agustina',
+                        'Rodriguez',
+                        '27251164447',
+                        'lavalle 1240',
+                        '1010',
+                        '',
+                        'aguus1240@gmail.com',
+                        0
+            )
+            ,
+            (
+                        11,
+                        'Angel',
+                        'Paz',
+                        '27543061097',
+                        'belgrano 1241',
+                        '1025',
+                        '',
+                        'apaz12@gmail.com',
+                        1
+            )
+            ,
+            (
+                        12,
+                        'tomas',
+                        'ganso',
+                        '20345677649',
+                        'lavalle 591',
+                        '1109',
+                        '',
+                        '',
+                        0
+            );
+
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `exposiciones`
+--DROP TABLE IF EXISTS `exposiciones`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `exposiciones`
+             (
+                          `id_exposiciones` INT NOT NULL auto_increment,
+                          `categoria_exp`   VARCHAR(10) NOT NULL,
+                          `comision_exp`    DECIMAL(10,2) NOT NULL,
+                          PRIMARY KEY (`id_exposiciones`)
+             )
+             engine=innodb auto_increment=8 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `exposiciones`
+--LOCK tables `exposiciones` WRITE;
+/*!40000 ALTER TABLE `exposiciones` DISABLE KEYS */
+;INSERT INTO `exposiciones` VALUES
+            (
+                        1,
+                        'vip',
+                        4500.00
+            )
+            ,
+            (
+                        2,
+                        'exclusive',
+                        3000.00
+            )
+            ,
+            (
+                        3,
+                        'premium',
+                        1999.00
+            )
+            ,
+            (
+                        4,
+                        'classic',
+                        999.00
+            )
+            ,
+            (
+                        5,
+                        'standard',
+                        500.00
+            )
+            ,
+            (
+                        6,
+                        'economic',
+                        5.00
+            )
+            ,
+            (
+                        7,
+                        'vip_caviar',
+                        5500.00
+            );
+
+/*!40000 ALTER TABLE `exposiciones` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `facturas`
+--DROP TABLE IF EXISTS `facturas`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `facturas`
+             (
+                          `id_factura`     INT NOT NULL auto_increment,
+                          `publicacion_id` INT NOT NULL,
+                          `cant_venta`     INT NOT NULL,
+                          `cliente_id`     INT NOT NULL,
+                          `orden_id`       INT NOT NULL,
+                          PRIMARY KEY (`id_factura`),
+                          KEY `publicacion_id` (`publicacion_id`),
+                          KEY `cliente_id` (`cliente_id`),
+                          KEY `orden_id` (`orden_id`),
+                          CONSTRAINT `facturas_ibfk_1` FOREIGN KEY (`publicacion_id`) REFERENCES `publicaciones` (`id_publicaciones`),
+                          CONSTRAINT `facturas_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id_clientes`),
+                          CONSTRAINT `facturas_ibfk_3` FOREIGN KEY (`orden_id`) REFERENCES `ordenes_entrega` (`id_ordenes`)
+             )
+             engine=innodb auto_increment=23 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `facturas`
+--LOCK tables `facturas` WRITE;
+/*!40000 ALTER TABLE `facturas` DISABLE KEYS */
+;INSERT INTO `facturas` VALUES
+            (
+                        12,3,3,1,3
+            )
+            ,
+            (
+                        13,2,1,3,2
+            )
+            ,
+            (
+                        14,9,3,4,3
+            )
+            ,
+            (
+                        15,4,2,5,4
+            )
+            ,
+            (
+                        16,7,5,6,5
+            )
+            ,
+            (
+                        17,15,1,7,6
+            )
+            ,
+            (
+                        18,14,1,8,7
+            )
+            ,
+            (
+                        19,4,2,9,8
+            )
+            ,
+            (
+                        20,1,1,10,9
+            )
+            ,
+            (
+                        21,13,1,11,10
+            )
+            ,
+            (
+                        22,10,3,4,11
+            );
+
+/*!40000 ALTER TABLE `facturas` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `ordenes_entrega`
+--DROP TABLE IF EXISTS `ordenes_entrega`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `ordenes_entrega`
+             (
+                          `id_ordenes`            INT NOT NULL auto_increment,
+                          `direccion_deliver`     VARCHAR(30) NOT NULL,
+                          `zona_id`               CHAR(4) NOT NULL,
+                          `observaciones_deliver` VARCHAR(50) DEFAULT NULL,
+                          PRIMARY KEY (`id_ordenes`),
+                          KEY `zona_id` (`zona_id`),
+                          CONSTRAINT `ordenes_entrega_ibfk_1` FOREIGN KEY (`zona_id`) REFERENCES `zonas_entrega` (`id_zonas`)
+             )
+             engine=innodb auto_increment=12 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `ordenes_entrega`
+--LOCK tables `ordenes_entrega` WRITE;
+/*!40000 ALTER TABLE `ordenes_entrega` DISABLE KEYS */
+;INSERT INTO `ordenes_entrega` VALUES
+            (
+                        1,
+                        'avenida belgrano 1240',
+                        '2000',
+                        'no funciona el timbre'
+            )
+            ,
+            (
+                        2,
+                        'almirante brown 240',
+                        '5700',
+                        'entregar a gladys'
+            )
+            ,
+            (
+                        3,
+                        'soler 1245',
+                        '1001',
+                        ''
+            )
+            ,
+            (
+                        4,
+                        'medrano 654',
+                        '1022',
+                        ''
+            )
+            ,
+            (
+                        5,
+                        'malabia 1240',
+                        '1015',
+                        ''
+            )
+            ,
+            (
+                        6,
+                        'aguero 435',
+                        '1012',
+                        ''
+            )
+            ,
+            (
+                        7,
+                        'directorio 1240',
+                        '1010',
+                        ''
+            )
+            ,
+            (
+                        8,
+                        'sarmiento 4114',
+                        '1013',
+                        ''
+            )
+            ,
+            (
+                        9,
+                        'lavalle 1240',
+                        '1010',
+                        '1 B'
+            )
+            ,
+            (
+                        10,
+                        'belgrano 1241',
+                        '1025',
+                        ''
+            )
+            ,
+            (
+                        11,
+                        'soler 1245',
+                        '1001',
+                        ''
+            );
+
+/*!40000 ALTER TABLE `ordenes_entrega` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `productos`
+--DROP TABLE IF EXISTS `productos`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `productos`
+             (
+                          `id_productos`    INT NOT NULL auto_increment,
+                          `descripcion`     VARCHAR(50) NOT NULL,
+                          `cant`            INT NOT NULL,
+                          `fecha_ingreso`   DATE DEFAULT NULL,
+                          `precio_venta`    DECIMAL(10,2) NOT NULL,
+                          `tamano_producto` CHAR(4) NOT NULL,
+                          `categoria_id`    INT NOT NULL,
+                          `vendedor_id`     INT DEFAULT NULL,
+                          PRIMARY KEY (`id_productos`),
+                          KEY `vendedor_id` (`vendedor_id`),
+                          KEY `categoria_id` (`categoria_id`),
+                          CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`vendedor_id`) REFERENCES `vendedores` (`id_vendedores`),
+                          CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id_categorias`)
+             )
+             engine=innodb auto_increment=23 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `productos`
+--LOCK tables `productos` WRITE;
+/*!40000 ALTER TABLE `productos` DISABLE KEYS */
+;INSERT INTO `productos` VALUES
+            (
+                        1,
+                        'Whiskey Old Parr x 750 ml',
+                        6,
+                        '2023-03-14',
+                        10145.45,
+                        '0.04',
+                        1,2
+            )
+            ,
+            (
+                        2,
+                        'Whiskey Buchanans x 750 ml',
+                        2,
+                        '2023-03-14',
+                        11545.00,
+                        '0.04',
+                        1,2
+            )
+            ,
+            (
+                        3,
+                        'Vino La Clelia cabernet franc x 750 ml',
+                        12,
+                        '2023-03-14',
+                        3545.00,
+                        '0.03',
+                        3,7
+            )
+            ,
+            (
+                        4,
+                        'pendrive 16 GB',
+                        120,
+                        '2023-04-30',
+                        999.00,
+                        '0.01',
+                        5,3
+            )
+            ,
+            (
+                        5,
+                        'pendrive 32 GB',
+                        120,
+                        '2023-04-30',
+                        1799.00,
+                        '0.01',
+                        5,3
+            )
+            ,
+            (
+                        6,
+                        'pendrive 64 GB',
+                        120,
+                        '2023-04-30',
+                        2999.00,
+                        '0.01',
+                        5,3
+            )
+            ,
+            (
+                        7,
+                        'Camiseta Rosario Central Talle S',
+                        50,
+                        '2023-06-01',
+                        16999.00,
+                        '0.02',
+                        9,8
+            )
+            ,
+            (
+                        8,
+                        'Camiseta Rosario Central Talle M',
+                        50,
+                        '2023-06-01',
+                        16999.00,
+                        '0.02',
+                        9,8
+            )
+            ,
+            (
+                        9,
+                        'Camiseta Rosario Central Talle L',
+                        50,
+                        '2023-06-01',
+                        16999.00,
+                        '0.02',
+                        9,8
+            )
+            ,
+            (
+                        10,
+                        'Camiseta Rosario Central Talle XL',
+                        20,
+                        '2023-06-01',
+                        16999.00,
+                        '0.02',
+                        9,8
+            )
+            ,
+            (
+                        11,
+                        'Jabon 100% organico de tocador fragancia citrica',
+                        25,
+                        '2023-07-01',
+                        899.00,
+                        '0.01',
+                        7,4
+            )
+            ,
+            (
+                        12,
+                        'Jabon 100% organico de tocador fragancia floral',
+                        25,
+                        '2023-07-01',
+                        899.00,
+                        '0.01',
+                        7,4
+            )
+            ,
+            (
+                        13,
+                        'Mascarilla facial rejuvenecedora',
+                        100,
+                        '2023-07-01',
+                        1099.00,
+                        '0.01',
+                        8,5
+            )
+            ,
+            (
+                        14,
+                        'Mascarillas facial hidratante',
+                        100,
+                        '2023-07-01',
+                        1099.00,
+                        '0.01',
+                        8,5
+            )
+            ,
+            (
+                        15,
+                        'Camiseta futbol generica Talle S',
+                        50,
+                        '2023-06-01',
+                        3999.00,
+                        '0.02',
+                        9,10
+            )
+            ,
+            (
+                        16,
+                        'Camiseta futbol generica Talle M',
+                        50,
+                        '2023-06-01',
+                        3999.00,
+                        '0.02',
+                        9,10
+            )
+            ,
+            (
+                        17,
+                        'Camiseta futbol generica Talle L',
+                        50,
+                        '2023-06-01',
+                        3999.00,
+                        '0.02',
+                        9,10
+            )
+            ,
+            (
+                        18,
+                        'Camiseta futbol generica Talle XL',
+                        20,
+                        '2023-06-01',
+                        3999.00,
+                        '0.02',
+                        9,10
+            )
+            ,
+            (
+                        19,
+                        'Camiseta futbol generica cool tech Talle S',
+                        100,
+                        '2023-06-01',
+                        5999.00,
+                        '0.02',
+                        9,9
+            )
+            ,
+            (
+                        20,
+                        'Camiseta futbol generica cool tech Talle M',
+                        100,
+                        '2023-06-01',
+                        5999.00,
+                        '0.02',
+                        9,9
+            )
+            ,
+            (
+                        21,
+                        'Camiseta futbol generica cool tech Talle L',
+                        100,
+                        '2023-06-01',
+                        5999.00,
+                        '0.02',
+                        9,9
+            )
+            ,
+            (
+                        22,
+                        'Camiseta futbol generica cool tech Talle XL',
+                        50,
+                        '2023-06-01',
+                        5999.00,
+                        '0.02',
+                        9,9
+            );
+
+/*!40000 ALTER TABLE `productos` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `publicaciones`
+--DROP TABLE IF EXISTS `publicaciones`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `publicaciones`
+             (
+                          `id_publicaciones` INT NOT NULL auto_increment,
+                          `producto_id`      INT NOT NULL,
+                          `descripcion_pub`  VARCHAR(50) DEFAULT NULL,
+                          `precio_pub`       DECIMAL(10,2) NOT NULL,
+                          `exposicion_id`    INT NOT NULL,
+                          PRIMARY KEY (`id_publicaciones`),
+                          KEY `exposicion_id` (`exposicion_id`),
+                          KEY `producto_id` (`producto_id`),
+                          CONSTRAINT `publicaciones_ibfk_1` FOREIGN KEY (`exposicion_id`) REFERENCES `exposiciones` (`id_exposiciones`),
+                          CONSTRAINT `publicaciones_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id_productos`)
+             )
+             engine=innodb auto_increment=16 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `publicaciones`
+--LOCK tables `publicaciones` WRITE;
+/*!40000 ALTER TABLE `publicaciones` DISABLE KEYS */
+;INSERT INTO `publicaciones` VALUES
+            (
+                        1,1,
+                        'Excelente whiskey escoses single envios',
+                        12800.45,
+                        3
+            )
+            ,
+            (
+                        2,2,
+                        'Excelente whiskey irlandes blend envios',
+                        12099.00,
+                        3
+            )
+            ,
+            (
+                        3,3,
+                        'Exquisito vino tinto valle de uco envios gratis',
+                        4999.00,
+                        5
+            )
+            ,
+            (
+                        4,11,
+                        ' Riquisimo Jabon 100% organico fragancia citrica',
+                        899.00,
+                        6
+            )
+            ,
+            (
+                        5,12,
+                        'Riquisimo Jabon 100% organicofragancia floral',
+                        899.00,
+                        6
+            )
+            ,
+            (
+                        6,13,
+                        'Mascarilla facial rejuvenecedora',
+                        1099.00,
+                        6
+            )
+            ,
+            (
+                        7,14,
+                        'Mascarillas facial hidratante',
+                        1099.00,
+                        6
+            )
+            ,
+            (
+                        8,15,
+                        'Camiseta de futbol editable S',
+                        3999.00,
+                        5
+            )
+            ,
+            (
+                        9,16,
+                        'Camiseta de futbol editable M',
+                        3999.00,
+                        5
+            )
+            ,
+            (
+                        10,17,
+                        'Camiseta de futbol editable L',
+                        3999.00,
+                        5
+            )
+            ,
+            (
+                        11,18,
+                        'Camiseta de futbol editable XL',
+                        3999.00,
+                        5
+            )
+            ,
+            (
+                        12,7,
+                        'Camiseta Rosario Central original S',
+                        16999.00,
+                        3
+            )
+            ,
+            (
+                        13,8,
+                        'Camiseta Rosario Central original M',
+                        16999.00,
+                        2
+            )
+            ,
+            (
+                        14,9,
+                        'Camiseta Rosario Central original L',
+                        16999.00,
+                        3
+            )
+            ,
+            (
+                        15,10,
+                        'Camiseta Rosario Central original XL',
+                        16999.00,
+                        3
+            );
+
+/*!40000 ALTER TABLE `publicaciones` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `rubros`
+--DROP TABLE IF EXISTS `rubros`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `rubros`
+             (
+                          `id_rubros`         INT NOT NULL auto_increment,
+                          `descripcion_rubro` VARCHAR(30) NOT NULL,
+                          PRIMARY KEY (`id_rubros`)
+             )
+             engine=innodb auto_increment=16 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `rubros`
+--LOCK tables `rubros` WRITE;
+/*!40000 ALTER TABLE `rubros` DISABLE KEYS */
+;INSERT INTO `rubros` VALUES
+            (
+                        1,
+                        'deportes'
+            )
+            ,
+            (
+                        2,
+                        'bebidas'
+            )
+            ,
+            (
+                        3,
+                        'belleza'
+            )
+            ,
+            (
+                        4,
+                        'electronica'
+            )
+            ,
+            (
+                        5,
+                        'automoviles'
+            )
+            ,
+            (
+                        11,
+                        'bazar'
+            )
+            ,
+            (
+                        12,
+                        'limpieza'
+            )
+            ,
+            (
+                        13,
+                        'hogar'
+            )
+            ,
+            (
+                        14,
+                        'jardin'
+            )
+            ,
+            (
+                        15,
+                        'arte'
+            );
+
+/*!40000 ALTER TABLE `rubros` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `transportes`
+--DROP TABLE IF EXISTS `transportes`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `transportes`
+             (
+                          `id_transportes`         INT NOT NULL auto_increment,
+                          `razonsocial_transporte` VARCHAR(20) NOT NULL,
+                          `cap_carga`              INT NOT NULL,
+                          `direccion_transporte`   VARCHAR(30) NOT NULL,
+                          `cp_transporte`          CHAR(4) NOT NULL,
+                          `telefono_transporte`    VARCHAR(30) DEFAULT NULL,
+                          `email_transporte`       VARCHAR(30) DEFAULT NULL,
+                          PRIMARY KEY (`id_transportes`)
+             )
+             engine=innodb auto_increment=5 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `transportes`
+--LOCK tables `transportes` WRITE;
+/*!40000 ALTER TABLE `transportes` DISABLE KEYS */
+;INSERT INTO `transportes` VALUES
+            (
+                        1,
+                        'rapido del norte',
+                        30,
+                        'ruta 11 km 10,5',
+                        '3500',
+                        '3624459489',
+                        'rapidodelnorte@gmail.com'
+            )
+            ,
+            (
+                        2,
+                        'expreso de la sierra',
+                        28,
+                        'fuerza aerea y rn 147',
+                        '5700',
+                        '2264425678',
+                        'expresodelasierras@gmail.com'
+            )
+            ,
+            (
+                        3,
+                        'elporteno',
+                        56,
+                        'warnes 1340',
+                        '1218',
+                        '1155635963',
+                        'elporteno@hotmail.com'
+            )
+            ,
+            (
+                        4,
+                        'el rosarino',
+                        120,
+                        'orono 6245',
+                        '2000',
+                        '3414657890',
+                        'elrosarino@gmail.com'
+            );
+
+/*!40000 ALTER TABLE `transportes` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `vendedores`
+--DROP TABLE IF EXISTS `vendedores`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `vendedores`
+             (
+                          `id_vendedores`        INT NOT NULL auto_increment,
+                          `razonsocial_vendedor` VARCHAR(20) NOT NULL,
+                          `cuit_vendedor`        CHAR(11) NOT NULL,
+                          `rubro_id`             INT NOT NULL,
+                          `direccion_vendedor`   VARCHAR(30) NOT NULL,
+                          `cp_vendedor`          CHAR(4) NOT NULL,
+                          `telefono_vendedor`    VARCHAR(30) DEFAULT NULL,
+                          `email_vendedor`       VARCHAR(30) DEFAULT NULL,
+                          `reputacion`           VARCHAR(20) DEFAULT NULL,
+                          PRIMARY KEY (`id_vendedores`),
+                          KEY `rubro_id` (`rubro_id`),
+                          CONSTRAINT `vendedores_ibfk_1` FOREIGN KEY (`rubro_id`) REFERENCES `rubros` (`id_rubros`)
+             )
+             engine=innodb auto_increment=13 DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `vendedores`
+--LOCK tables `vendedores` WRITE;
+/*!40000 ALTER TABLE `vendedores` DISABLE KEYS */
+;INSERT INTO `vendedores` VALUES
+            (
+                        1,
+                        'todosport',
+                        '20422491812',
+                        1,
+                        'estado de israel 4769',
+                        '1185',
+                        '1154324211',
+                        'todosport@gmail.com',
+                        'oro'
+            )
+            ,
+            (
+                        2,
+                        'la campinia',
+                        '27235561512',
+                        2,
+                        'mansilla 3514',
+                        '1425',
+                        '1153675780',
+                        'lacampinia@gmail.com',
+                        'platino'
+            )
+            ,
+            (
+                        3,
+                        'electrostar',
+                        '27089097893',
+                        4,
+                        'gascon 826',
+                        '1181',
+                        '1155679909',
+                        'electrostar@gmail.com',
+                        'platino'
+            )
+            ,
+            (
+                        4,
+                        'todo organico',
+                        '20123950019',
+                        3,
+                        'darwin 1154',
+                        '1414',
+                        '1153218181',
+                        'todoorganico@gmail.com',
+                        'bronce'
+            )
+            ,
+            (
+                        5,
+                        'beauty store',
+                        '27304395009',
+                        3,
+                        '27 de febrero 601',
+                        '1203',
+                        '1153567905',
+                        'beautystore@gmail.com',
+                        'bronce'
+            )
+            ,
+            (
+                        6,
+                        'detailing caba',
+                        '27355550017',
+                        5,
+                        'warnes 390',
+                        '1614',
+                        '1153211805',
+                        'detailingcaba@gmail.com',
+                        'plata'
+            )
+            ,
+            (
+                        7,
+                        'la vinoteca del nono',
+                        '27105650519',
+                        2,
+                        'newton 23',
+                        '1045',
+                        '1153211911',
+                        'ladelnono@gmail.com',
+                        'oro'
+            )
+            ,
+            (
+                        8,
+                        'dexter',
+                        '20234569879',
+                        1,
+                        'serrano 879',
+                        '1312',
+                        '1153211456',
+                        'dexter@gmail.com',
+                        'oro'
+            )
+            ,
+            (
+                        9,
+                        'de primera',
+                        '20342495107',
+                        1,
+                        'san jose 456',
+                        '1056',
+                        '1153211305',
+                        'de1era@gmail.com',
+                        'bronce'
+            )
+            ,
+            (
+                        10,
+                        'pasion y algo mas',
+                        '20123955767',
+                        1,
+                        'directorio 2154',
+                        '1069',
+                        '1153211367',
+                        'pasionyalgomas@gmail.com',
+                        'bronce'
+            )
+            ,
+            (
+                        11,
+                        'todocomics',
+                        '27465361812',
+                        4,
+                        'republica de la india 567',
+                        '1206',
+                        '1165224110',
+                        'comics100@gmail.com',
+                        'plata'
+            )
+            ,
+            (
+                        12,
+                        'todocomics',
+                        '27465361812',
+                        4,
+                        'republica de la india 567',
+                        '1206',
+                        '1165224110',
+                        'comics100@gmail.com',
+                        'plata'
+            );
+
+/*!40000 ALTER TABLE `vendedores` ENABLE KEYS */
+;UNLOCK tables;
+--
+-- Table structure for table `zonas_entrega`
+--DROP TABLE IF EXISTS `zonas_entrega`;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */
+;
+/*!50503 SET character_set_client = utf8mb4 */
+;CREATE TABLE `zonas_entrega`
+             (
+                          `id_zonas`          CHAR(4) NOT NULL,
+                          `detalle_zona`      CHAR(4) NOT NULL,
+                          `ciudad_deliver`    VARCHAR(20) NOT NULL,
+                          `provincia_deliver` VARCHAR(20) NOT NULL,
+                          `distancia_cd`      INT NOT NULL,
+                          `eta_deliver`       INT NOT NULL,
+                          `tarifa_deliver`    DECIMAL(10,2) DEFAULT NULL,
+                          `transporte_id`     INT DEFAULT NULL,
+                          PRIMARY KEY (`id_zonas`),
+                          KEY `transporte_id` (`transporte_id`),
+                          CONSTRAINT `zonas_entrega_ibfk_1` FOREIGN KEY (`transporte_id`) REFERENCES `transportes` (`id_transportes`)
+             )
+             engine=innodb DEFAULT charset=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*!40101 SET character_set_client = @saved_cs_client */
+;
+--
+-- Dumping data for table `zonas_entrega`
+--LOCK tables `zonas_entrega` WRITE;
+/*!40000 ALTER TABLE `zonas_entrega` DISABLE KEYS */
+;INSERT INTO `zonas_entrega` VALUES
+            (
+                        '1001',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1002',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1003',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1004',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1005',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1006',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1007',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1008',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1009',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1010',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1011',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1012',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1013',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1014',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1015',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1016',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1017',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1018',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1019',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1020',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1021',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1022',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1023',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1024',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1025',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '1026',
+                        'SCF1',
+                        'capital federal',
+                        'capital federal',
+                        15,0,
+                        800.00,
+                        3
+            )
+            ,
+            (
+                        '2000',
+                        'SRO1',
+                        'rosario',
+                        'santa fe',
+                        300,1,
+                        1600.00,
+                        4
+            )
+            ,
+            (
+                        '3500',
+                        'SRE1',
+                        'resistencia',
+                        'chaco',
+                        600,2,
+                        2500.00,
+                        1
+            )
+            ,
+            (
+                        '5700',
+                        'SLU1',
+                        'san luis',
+                        'san luis',
+                        780,2,
+                        3900.00,
+                        2
+            );
+
+/*!40000 ALTER TABLE `zonas_entrega` ENABLE KEYS */
+;UNLOCK tables;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */
+;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */
+;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */
+;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */
+;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
+;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */
+;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */
+;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
+;
+-- Dump completed on 2023-08-04 20:35:56
