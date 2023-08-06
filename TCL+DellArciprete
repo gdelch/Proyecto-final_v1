@@ -1,0 +1,101 @@
+/* Selecciono la BD del proyecto final y luego seteo autocommit en 0 */
+USE proyecto_final_v1;SELECT @@autocommit;SET @@autocommit = 0;
+/* inserto nuevos rubros que la compania planea comenzar a vender */
+	    INSERT INTO rubros
+            (
+                        descripcion_rubro
+            )
+            VALUES
+            (
+                        'bazar'
+            )
+            ,
+            (
+                        'limpieza'
+            )
+            ,
+            (
+                        'hogar'
+            )
+            ,
+            (
+                        'jardin'
+            )
+            ,
+            (
+                        'arte'
+            );SELECT *
+FROM   rubros;
+
+/*Como están en periodo de analisis, inserto una transacción hasta tener confirmación */
+START transaction
+/* Elimino aquellos que no superaron investigación de mercado */
+DELETE
+FROM   rubros
+WHERE  id_rubros BETWEEN 11 AND    14;
+
+/* Rollback en caso de que se quiera avanzar igual */rollback
+/* Commit en caso de que se quieran eliminar definitivamente dichos rubros */
+commit
+/*Insercción de lotes en tabla categorias*/
+START transaction
+INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'televisores'
+            );INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'secarropas'
+            );INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'anafes'
+            );INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'cavas'
+            );savepoint lote_1;INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'termotanques'
+            );INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'lavavajillas'
+            );INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'lavarropas'
+            );INSERT INTO categorias
+            (
+                        descripcion_categoria
+            )
+            VALUES
+            (
+                        'heladeras'
+            );savepoint lote_2;
+/* Sentencia en caso de eliminar primer savepoint (primeros 4 registros)*/
+
+RELEASE savepoint lote_1;
