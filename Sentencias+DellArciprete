@@ -1,0 +1,23 @@
+USE proyecto_final_v1;
+	/* Creación de los 3 user de la BD con sus respectivos pw */
+  CREATE user 'adminread@meli' identified BY 'adminread';
+
+  CREATE user 'adminnodelete@meli' identified BY 'adminnodelete';
+
+	CREATE user 'adminsac@meli' identified BY 'adminsac';
+      
+	/* Al primero se le permite consulta de todas las tablas de la BD */
+
+	GRANT SELECT ON proyecto_final_v1.* TO 'adminread@meli';
+      
+  /* Al segundo se le permite consulta, agregado y actualización de registros todas las tablas de la BD */
+
+	GRANT SELECT, UPDATE, INSERT ON proyecto_final_v1.* TO 'adminnodelete@meli';
+      
+  /* Al tercero de servicio al cliente se le permite consulta, agregado y actualización de registros SOLO de la tabla clientes */
+
+	GRANT SELECT, UPDATE,INSERT ON proyecto_final_v1.clientes TO 'adminsac@meli';
+      
+ /*Con esta sentencia se consultan los permisos de determinado usuario, en este caso adminsac@meli */
+
+  SHOW grants FOR 'adminsac@meli';
