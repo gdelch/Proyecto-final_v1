@@ -11,6 +11,20 @@ CREATE TABLE categorias(
   descripcion_categoria VARCHAR(30) NOT NULL
   );
 
+CREATE TABLE monedas(
+  id_monedas INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  simbolo_monedas CHAR(11) NOT NULL, 
+  descripcion_monedas VARCHAR(30) NOT NULL
+  );
+
+CREATE TABLE paises(
+  id_paises INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  simbolo_paises CHAR(11) NOT NULL, 
+  descripcion_paises VARCHAR(30) NOT NULL,
+  moneda_id INT NOT NULL,
+  FOREIGN KEY (moneda_id) REFERENCES monedas(id_monedas)
+  );
+
 
 CREATE TABLE vendedores(
   id_vendedores INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,8 +62,10 @@ CREATE TABLE clientes(
   direccion_cliente VARCHAR(30) NOT NULL, 
   cp_cliente CHAR(4) NOT NULL,
   telefono_cliente VARCHAR(30), 
-  email_cliente VARCHAR(30), 
+  email_cliente VARCHAR(30),
+  pais_id INT NOT NULL,  
   membresia boolean
+  FOREIGN KEY (pais_id) REFERENCES paises(id_paises)
   );
   
   CREATE TABLE transportes(
@@ -133,6 +149,28 @@ VALUES
 ('camisetas futbol')
 ;
 
+INSERT INTO monedas
+(simbolo_monedas, descripcion_monedas)
+VALUES 
+('ARS','peso argentino'),
+('BRL','real brasileno'),
+('CLP','peso chileno'),
+('PYG','guarani paraguayo'),
+('PEN','sol'),
+('BOB','boliviano'),
+('UYU','peso uruguayo');
+
+INSERT INTO paises
+(simbolo_pais, descripcion_paises, moneda_id)
+VALUES 
+('ARG','Argentina',1),
+('BRA','Brasil',2),
+('CHL','Chile',3),
+('PRY','Paraguay',4),
+('PER','Peru',5),
+('BOL','Bolivia',6),
+('URY','Uruguay',7);
+
 
 INSERT INTO vendedores
 (razonsocial_vendedor, cuit_vendedor, rubro_id, direccion_vendedor, cp_vendedor, telefono_vendedor, email_vendedor, reputacion)
@@ -178,19 +216,19 @@ VALUES
 
 
 INSERT INTO clientes
-(nombre_cliente, apellido_cliente, cuil_cliente , direccion_cliente, cp_cliente, telefono_cliente, email_cliente, membresia)
+(nombre_cliente, apellido_cliente, cuil_cliente , direccion_cliente, cp_cliente, telefono_cliente, email_cliente, pais_id, membresia)
 VALUES 
-('Lionel','Messi',20305561512,'avenida belgrano 1240',2000,3516367578,'leo_campeon@gmail.com',1),
-('Azul','Perez',27401161247,'san martin 456',3500,'','azul_perez1@gmail.com',0),
-('Milena','Katz',27423069017,'guemes 2304',5700,'','mile_k99@gmail.com',1),
-('Francisca','Garcia',27422411247,'soler 1245',1001,'','franga91@gmail.com',0),
-('Franco','Martinez',27301239017,'medrano 654',1022,'','fmartinez.1987@gmail.com',1),
-('Juan','Garcia',27248961137,'malabia 1240',1015,'','juanitogarcia77@gmail.com',0),
-('Martin','Gonzalez',27113069217,'aguero 435',1012,'','marting1992@gmail.com',1),
-('Nahuel','Gomez',27101161907,'directorio 1240',1010,'','nahuegomez@gmail.com',0),
-('Tomas','Juarez',27183060807,'sarmiento 4114',1013,'','tommyj1@gmail.com',1),
-('Agustina','Rodriguez',27251164447,'lavalle 1240',1010,'','aguus1240@gmail.com',0),
-('Angel','Paz',27543061097,'belgrano 1241',1025,'','apaz12@gmail.com',1)
+('Lionel','Messi',20305561512,'avenida belgrano 1240',2000,3516367578,'leo_campeon@gmail.com',1,1),
+('Azul','Perez',27401161247,'san martin 456',3500,'','azul_perez1@gmail.com',1,0),
+('Milena','Katz',27423069017,'guemes 2304',5700,'','mile_k99@gmail.com',1,1),
+('Francisca','Garcia',27422411247,'soler 1245',1001,'','franga91@gmail.com',1,0),
+('Franco','Martinez',27301239017,'medrano 654',1022,'','fmartinez.1987@gmail.com',1,1),
+('Juan','Garcia',27248961137,'malabia 1240',1015,'','juanitogarcia77@gmail.com',1,0),
+('Martin','Gonzalez',27113069217,'aguero 435',1012,'','marting1992@gmail.com',1,1),
+('Nahuel','Gomez',27101161907,'directorio 1240',1010,'','nahuegomez@gmail.com',1,0),
+('Tomas','Juarez',27183060807,'sarmiento 4114',1013,'','tommyj1@gmail.com',1,1),
+('Agustina','Rodriguez',27251164447,'lavalle 1240',1010,'','aguus1240@gmail.com',1,0),
+('Angel','Paz',27543061097,'belgrano 1241',1025,'','apaz12@gmail.com',1,1)
 ;
 
 INSERT INTO transportes
