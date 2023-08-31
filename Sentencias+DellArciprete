@@ -1,12 +1,14 @@
 USE proyecto_final_v1;
-	/* Creación de los 3 user de la BD con sus respectivos pw */
+	
+/* Creación de los 3 user de la BD con sus respectivos pw */
+
   CREATE user 'adminread@meli' identified BY 'adminread';
 
   CREATE user 'adminnodelete@meli' identified BY 'adminnodelete';
 
-	CREATE user 'adminsac@meli' identified BY 'adminsac';
+  CREATE user 'adminsac@meli' identified BY 'adminsac';
       
-	/* Al primero se le permite consulta de todas las tablas de la BD */
+/* Al primero se le permite consulta de todas las tablas de la BD */
 
 	GRANT SELECT ON proyecto_final_v1.* TO 'adminread@meli';
       
