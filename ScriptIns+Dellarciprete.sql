@@ -1,6 +1,7 @@
 CREATE SCHEMA proyecto_final_v1;
 USE proyecto_final_v1; 
 
+
 CREATE TABLE rubros(
   id_rubros INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descripcion_rubro VARCHAR(30) NOT NULL
