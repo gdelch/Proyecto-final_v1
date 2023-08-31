@@ -19,7 +19,6 @@ EXECUTE consulta;
 END
 //
 
-CALL productos_filter('descripcion','asc');
 
 /* El SP verifica el id del cliente ingresado, si el mismo ya existe, lo elimina y de no existir crea un nuevo registro con los datos ingresados en la tabla clientes */
 
