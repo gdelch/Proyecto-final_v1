@@ -64,7 +64,7 @@ CREATE TABLE clientes(
   telefono_cliente VARCHAR(30), 
   email_cliente VARCHAR(30),
   pais_id INT NOT NULL,  
-  membresia boolean
+  membresia boolean,
   FOREIGN KEY (pais_id) REFERENCES paises(id_paises)
   );
   
