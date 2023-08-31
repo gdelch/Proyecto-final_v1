@@ -1,4 +1,4 @@
-/* Selecciono la BD del proyecto final y luego seteo autocommit en 0 */
+/* Selecciono la BD del proyecto final y luego seteo autocommit en 0 */ 
 USE proyecto_final_v1;
 SELECT @@autocommit; 
 SET @@autocommit = 0;
