@@ -82,3 +82,19 @@ AS
            ON p.exposicion_id = e.id_exposiciones
   GROUP  BY e.categoria_exp
   ORDER  BY monto_comisiones DESC; 
+
+/* Muestra monto de gastos por envios por cada empresa de transporte */
+
+CREATE OR REPLACE view vw_gastos_transportes
+AS
+  SELECT t.razonsocial_transporte             AS transportes,
+         Sum(f.cant_venta * z.tarifa_deliver) AS monto_envios
+  FROM   facturas AS f
+         JOIN ordenes_entrega AS o
+           ON f.orden_id = o.id_ordenes
+         JOIN zonas_entrega AS z
+           ON o.zona_id = z.id_zonas
+         JOIN transportes AS t
+           ON z.transporte_id = t.id_transportes
+  GROUP  BY transportes
+  ORDER  BY monto_envios DESC
